@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="./style.css">
+        <script src="./app.js" defer></script>
+        <noscript>Your browser doesn't support javascript!</noscript>
+        <title>Weather App</title>
+    </head>
+    <body>
+        <div class="card">
+            <div class="search">
+                <input type="text" class="search-bar" placeholder="Search">
+                <button><i class="material-icons">search</i></button>
+            </div>
+            <div class="weather">
+                <h1 id="city">Weather in Detroit</h1>
+                <div id="temp">51° F</div>
+                <div class="flex">
+                    <img src="https://openweathermap.org/img/wn/02d.png" alt="icon" id="icon">
+                    <div id="description">Cloudy</div>
+                </div>
+                <div id="humidity">Humidity: 60%</div>
+                <div id="wind">Wind Speed: 92mph</div>
+            </div>
+        </div>
+    </body>
+</html>
