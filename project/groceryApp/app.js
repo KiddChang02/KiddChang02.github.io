@@ -1,4 +1,5 @@
 //  ---Selectors---
+
 const alert = document.querySelector(".alert");
 const form = document.querySelector(".grocery-form");
 const grocery = document.querySelector("#grocery");
@@ -8,9 +9,9 @@ const list = document.querySelector(".grocery-list");
 const clearBtn = document.querySelector(".clear-btn");
 
 //  ---Edit Items---
+
 let editElement;
 let editFlag = false;
-let editID = "";
 
 //  ---Event Listeners---
 
@@ -26,7 +27,6 @@ clearBtn.addEventListener("click", clearItem);
 function addItem(e) {
     e.preventDefault();
     const value = grocery.value
-    const id = new Date().getTime().toString();
 
     if (value && !editFlag) {
         const element = document.createElement("article");
@@ -34,9 +34,8 @@ function addItem(e) {
         //add class to element
         element.classList.add('grocery-item');
         
-        //add id & grocery item
+        //add grocery item
         const attr = document.createAttribute("data-id");
-        attr.value = id;
         element.setAttributeNode(attr);
         element.innerHTML = ` <p class="title">${value}</p>
                                 <div class="btn-container">
@@ -49,8 +48,8 @@ function addItem(e) {
                                 </div>`;
         
         //edit&delete selectors
-        const deleteBtn = element.querySelector(".delete-btn")
-        const editBtn = element.querySelector(".edit-btn")
+        const deleteBtn = element.querySelector(".delete-btn");
+        const editBtn = element.querySelector(".edit-btn");
         
         //edit&delete listeners
         deleteBtn.addEventListener("click", deleteItem);
@@ -60,7 +59,7 @@ function addItem(e) {
         list.appendChild(element);
         
         //display alert
-        displayAlert("item added to the list", "success")
+        displayAlert("item added to the list", "success");
         
         //show container
         container.classList.add("show-container");
@@ -70,7 +69,6 @@ function addItem(e) {
     } else if (value && editFlag) {
         editElement.innerHTML = value;
         displayAlert("value changed", "success");
-        
         
         setBackToDefault();
     } else {
@@ -107,7 +105,6 @@ function clearItem() {
 //delete item
 function deleteItem(e) {
     const element = e.currentTarget.parentElement.parentElement;
-    const id = element.dataset.id;
     list.removeChild(element);
 
     //if no grocery items, hide container
@@ -128,7 +125,6 @@ function editItem(e) {
     grocery.value = editElement.innerHTML;
     //set edit flag
     editFlag = true;
-    editID = element.dataset.id;
     submitBtn.textContent = "Edit";
 }
 
@@ -136,7 +132,6 @@ function editItem(e) {
 function setBackToDefault() {
     grocery.value = "";
     editFlag = false;
-    editID = "";
     submitBtn.textContent = "Submit";
 }
 
