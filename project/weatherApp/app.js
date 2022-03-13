@@ -1,5 +1,12 @@
+//  ---Function---
+
+//weather function
 let weather = {
+    
+    //my api key
     apiKey: "690d0147973fa3d314f9a29de2840d58",
+    
+    //gets weather data
     fetchWeather: function(city) {
         fetch(
             "https://api.openweathermap.org/data/2.5/weather?q="+ 
@@ -10,6 +17,8 @@ let weather = {
         .then((response)=>response.json())
         .then((data)=>this.displayWeather(data));
     },
+
+    //displays weather data
     displayWeather: function(data) {
         const { name } = data;
         const { icon, description } = data.weather[0];
@@ -24,19 +33,27 @@ let weather = {
         document.querySelector("#wind").innerText = "Wind Speed: " + speed + "mph";
         
     },
+
+    //gets search bar value
     search: function() {
         this.fetchWeather(document.querySelector(".search-bar").value);
     }
 };
 
+//  ---Event Listeners---
+
+//search button
 document.querySelector(".search button").addEventListener("click", function(){
     weather.search();
 });
 
+//search enter key
 document.querySelector(".search-bar").addEventListener("keyup", function(event){
     if(event.key == "Enter"){
         weather.search();
     }
 });
+
+//  ---Default City to Display Weather---
 
 weather.fetchWeather("Detroit");
